@@ -6,7 +6,7 @@ require_relative './database'
 
 main_index_url = "http://daringfireball.net/archive/"
 scrape = Scraper.new(main_index_url)
-database = Database.new(scrape)
+database = Database.new #(scrape)
 
 cldf = CLdf.new(Post.all)
 cldf.call

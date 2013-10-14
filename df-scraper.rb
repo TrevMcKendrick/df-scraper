@@ -25,6 +25,3 @@ class Scraper
     end 
   end
 end
-
-#main_index_url = "http://daringfireball.net/archive/"
-#Scraper.new("http://daringfireball.net/archive/")

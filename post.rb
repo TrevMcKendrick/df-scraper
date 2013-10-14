@@ -21,9 +21,5 @@ class Post
     result = @@db.execute(sql, id)
     result.flatten
   end
-end
 
-# Import all posts
-# for each post, database checks whether that object has already been inserted
-# if it's already inserted, it runs update
-# if it's not already inserted, it runs insert
+end
