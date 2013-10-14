@@ -10,7 +10,7 @@ class Scraper
   def initialize(main_index_url)
     @main_index_url = main_index_url
     self.posts_array = []
-    call
+    #call
   end
 
   def call
@@ -34,14 +34,15 @@ class Scraper
   def parse_post(url)
     post_page = Nokogiri::HTML(open("#{url}"))
     post = post_page.css('div.article').text
-    post.gsub!("\n\n\n",' ')
-    post.gsub!("\n\n",' ')
-    post.gsub!("\n",' ')
-    post.gsub!("\n",' ')
-    post.gsub!("  ",' ')
-    post.strip
+    # post.gsub!("\n\n\n",' ')
+    # post.gsub!("\n\n",' ')
+    # post.gsub!("\n",' ')
+    # post.gsub!("\n",' ')
+    post.gsub!(/\n/,' ')
+    post.gsub!(/\s{2,}/,' ')
+    post.strip!
+    binding.pry
   end
 end
-
-# scraper = Scraper.new("http://daringfireball.net/archive/")
-# scraper.parse_post
+scraper = Scraper.new("http://daringfireball.net/archive/")
+scraper.parse_post("http://daringfireball.net/2013/10/design_quality_as_a_sustainable_advantage")
