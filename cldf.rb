@@ -10,7 +10,7 @@ class CLdf
 
   def call
     while self.on?
-
+      puts "---------------------------------------------------------------------------"
       puts "Welcome to the Daring Fireball index"
       puts "              __               _____      ______   |\\        /\\       __ "
       puts "\\          / |     |          /          /     |   | \\      /  \\     |    "
@@ -19,7 +19,7 @@ class CLdf
       puts "   \\/  \\/    |__   |_____     \\____      \\_____/   |    \\/        \\  |__ "
       puts "---------------------------------------------------------------------------"
       puts "\n ~~~~~~~~~~Enter a command! ~~~~~~~~~~"
-      puts "\n You can: \n 1. Browse \n 2. Help \n 3. Lookup \n 4. Exit"
+      puts "\n You can: \n 1. search \n 2. Help \n 3. Lookup \n 4. Exit"
         get_input
     end   
   end
@@ -35,8 +35,8 @@ class CLdf
 
   def process_input
     case self.input
-    when "browse"
-      browse
+    when "search"
+      search
     when "help"
       help
     when "exit"
@@ -46,17 +46,24 @@ class CLdf
     end
   end
 
-  def browse
-   Post.all.each do |post|
-      puts "The title is: #{post.title}"
-      puts "The link is: #{post.link}"
-      puts "The post id is: #{post.id}"
+  def search    
+    puts "--------------------------"
+    puts "Enter search word:"
+    search_word = gets.strip.downcase
+    count = 0
+    Post.all.each do |post|
+      if post.word_array.include?(search_word)
+        puts post.title
+        puts "----------------------------------"
+        count += 1
+      end
     end
+    puts "#{count} results"
   end
 
   def help
     # puts "Here are a list of commands:"
-    # puts "Browse"
+    # puts "search"
     # puts "Lookup"
     # puts "Exit"
     # puts "Type 'help' to see this list again."

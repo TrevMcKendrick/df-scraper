@@ -1,7 +1,7 @@
 require 'sqlite3'
 
 class Post
-  attr_accessor :title, :link
+  attr_accessor :title, :link, :word_array, :text
   attr_reader :id
   
   @@posts = []
