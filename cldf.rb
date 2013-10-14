@@ -1,6 +1,5 @@
 require_relative './post'
 require_relative './df-scraper'
-require 'sqlite3'
 
 class CLdf
   attr_accessor :post_array, :input, :on
@@ -64,7 +63,7 @@ class CLdf
   end
 
   def exit
-    puts "Adios"
+    puts "~~~~~~~~~~~~Adios~~~~~~~~~~~~~"
     self.on = false
   end
 
@@ -72,9 +71,11 @@ class CLdf
     puts "----------------------------------------------------------------"
     puts "\n ~~~~~~~~~~What post # do you want to look up?~~~~~~~~~~"
     id = gets.strip.downcase
-    title = Post.find(id.to_i).title
-    link = Post.find(id.to_i).link
-    puts "Post number #{id} is: \"#{title}\""
+    post = Post.find(id.to_i)
+    title = post[1]
+    link = post[2]
+    puts "\n"
+    puts "Post title == #{"title"} and link == \"#{link}\""
     visit(link)
   end
 

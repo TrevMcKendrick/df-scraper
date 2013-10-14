@@ -19,16 +19,11 @@ class Post
   def self.find(id)
     sql = "SELECT * FROM posts WHERE id = ?"
     result = @@db.execute(sql, id)
-    Post.new_from_db(result.first)
-   
-    #@@posts[id-1] WORKING CODE
+    result.flatten
   end
-
-  def self.new_from_db(row)
-    post = Post.new
-    post.id = row[0]
-    post.title = row[1]
-    post.link = row[2]
-  end
-
 end
+
+# Import all posts
+# for each post, database checks whether that object has already been inserted
+# if it's already inserted, it runs update
+# if it's not already inserted, it runs insert
